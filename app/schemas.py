@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class ItemBase(BaseModel):
     name: str
@@ -6,6 +7,10 @@ class ItemBase(BaseModel):
 
 class ItemCreate(ItemBase):
     pass
+
+class ItemUpdate(BaseModel):
+    name: Optional[str] = None
+    quantity: Optional[int] = None
 
 class ItemOut(ItemBase):
     id: int
