@@ -13,6 +13,10 @@ def create_category(category: schemas.CategoryCreate, db: Session = Depends(get_
 def read_categories(skip: int = 0, limit: int = 10 ,db: Session = Depends(get_db)):
     return crud.get_category(db=db ,skip=skip ,limit=limit)
 
+@router.get("/item", response_model=list[schemas.CategoryOutItem])
+def read_categories(skip: int = 0, limit: int = 10 ,db: Session = Depends(get_db)):
+    return crud.get_category(db=db ,skip=skip ,limit=limit)
+
 @router.patch("/{category_id}", response_model=schemas.CategoryOut)
 def patch_category(category_id: int, category: schemas.CategoryUpdate, db: Session = Depends(get_db)):
     db_category = crud.update_category(db, category_id, category)

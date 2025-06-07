@@ -13,8 +13,8 @@ router = APIRouter(prefix="/items", tags=["Items"])
 #         db.close()
 
 @router.get("/", response_model=list[schemas.ItemOut])
-def read_items(db: Session = Depends(get_db)):
-    return crud.get_items(db)
+def read_items(db: Session = Depends(get_db) ,skip: int = 0 ,limit: int = 10):
+    return crud.get_items(db ,skip ,limit)
 
 @router.post("/", response_model=schemas.ItemOut)
 def create_item(item: schemas.ItemCreate, db: Session = Depends(get_db)):
